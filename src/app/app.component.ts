@@ -22,6 +22,7 @@ export class MyApp {
   rootPage = HelloIonicPage;
 
   public apiData: any;
+  public dataSize: number =50;
 
   pages: Array<{title: string, component: any}>;
 
@@ -32,37 +33,23 @@ export class MyApp {
     public splashScreen: SplashScreen,
     public apiExchangeProvider :ApiExchangeProvider
   ) {
-    this.initializeApp();
-
     // set our app's pages
     this.pages = [
-      { title: 'Hello Ionic', component: HelloIonicPage },
       { title: 'My First List', component: ListPage }
     ];
     this.loadData();
   }
 
-  initializeApp() {
-    this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-    });
-  }
-
-  openPage(page) {
-    // close the menu when clicking a link from the menu
-    this.menu.close();
-    // navigate to the new page if it is not the current page
-    this.nav.setRoot(page.component);
-  }
-
-
   loadData(){
   this.apiExchangeProvider.load()
   .then(data => {
     this.apiData = data;
-  });
-}
+  });}
+
+  doRefresh(refresher){
+      this.dataSize +=10;
+      this.loadData();
+      refresher.complete();
+  }
+
 }

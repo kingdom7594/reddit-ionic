@@ -17,7 +17,14 @@
 </ion-menu> -->
 
 
+<ion-header  >
+  <ion-toolbar color="red">
+    <ion-title >Welcome to reddit </ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content >
+
   <ion-list>
     <ion-item *ngFor="let person of apiData">
       <ion-avatar item-left>
@@ -27,6 +34,20 @@
       <p>{{person.email}}</p>
     </ion-item>
   </ion-list>
+
 </ion-content>
+
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title  style=" float:right;padding-right:80px">Copyright to kingdom</ion-title>
+    <ion-tabs>
+    <ion-tab tabIcon="contact" [root]="tab1"></ion-tab>
+    <ion-tab tabIcon="compass" [root]="tab2"></ion-tab>
+    <ion-tab tabIcon="analytics" [root]="tab3"></ion-tab>
+    <ion-tab tabIcon="settings" [root]="tab4"></ion-tab>
+  </ion-tabs>`
+  </ion-toolbar>
+</ion-footer>
 
 <!-- <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav> -->

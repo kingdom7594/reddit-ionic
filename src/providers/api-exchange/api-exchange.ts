@@ -11,12 +11,13 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ApiExchangeProvider {
    public data : any;
+  // public dataSize : number=50;
   constructor(public http: Http) {
     console.log('Hello ApiExchangeProvider Provider');
     this. load();
   }
 
-  load() {
+  load(dataSize) {
   if (this.data) {
     // already loaded data
     return Promise.resolve(this.data);
@@ -27,7 +28,7 @@ export class ApiExchangeProvider {
     // We're using Angular HTTP provider to request the data,
     // then on the response, it'll map the JSON data to a parsed JS object.
     // Next, we process the data and resolve the promise with the new data.
-    this.http.get('https://randomuser.me/api/?results=100')
+    this.http.get('https://randomuser.me/api/?results='+50)
       .map(res => res.json())
       .subscribe(data => {
         // we've got back the raw data, now generate the core schedule data
